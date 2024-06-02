@@ -79,14 +79,30 @@ public class Batoh {
      * Metoda pro odebrání předmětu z batohu.
      * @param vec předmět k odebrání
      */
-    public void odeberPredmet(Vec vec) {
+    public boolean odeberPredmet(Vec vec) {
         if (this.obsahujePredmet(vec.getNazev())) {
             obsah.remove(vec);
             obsazenost -= vec.getVelikost();
             System.out.println("Předmět " + vec.getNazev() + " byl odebrán z batohu.");
+            return true;
         } else {
             System.out.println("Předmět " + vec.getNazev() + " není v batohu.");
+            return false;
         }
+    }
+
+    /**
+     * Metoda pro získání věci z batohu podle názvu.
+     * @param nazev název věci
+     * @return věc nalezená v batohu, nebo null, pokud věc není v prostoru
+     */
+    public Vec getPredmet(String nazev) {
+        for (Vec vec : obsah) {
+            if (vec.getNazev().equalsIgnoreCase(nazev)) {
+                return vec;
+            }
+        }
+        return null;
     }
 
     /**

@@ -26,7 +26,7 @@ public class PrikazSeber extends Prikaz {
      *  Provádí příkaz "seber". Zkouší sebrat předmět z prostoru a uložit ho
      *  do batohu.
      *
-     *  @param parametry - jako parametr obsahuje jméno předmětu k sebrání,
+     *  @param parametry - jako parametr obsahuje jméno předmětu k sebrání.
      *  @return zpráva, kterou vypíše hra hráči
      */
    @Override
@@ -47,7 +47,7 @@ public class PrikazSeber extends Prikaz {
 
        Vec existujiciVec = aktualniProstor.getVec(predmet);
 
-       if (batoh.vlozPredmet(existujiciVec)) { // Plný batoh
+       if (batoh.vlozPredmet(existujiciVec)) {
            aktualniProstor.odeberVec(existujiciVec);
        }
 

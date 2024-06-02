@@ -87,6 +87,7 @@ public class HerniPlan {
 
         // zasazení věcí do prostoru
         les.vlozVec(klacek);
+        les.vlozVec(boruvky);
         les.vlozVec(strom);
         les.vlozVec(boruvky);
         hlubokyLes.vlozVec(parez);

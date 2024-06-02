@@ -25,7 +25,7 @@ public class PrikazRozhlednout extends Prikaz {
     /**
      * Provádí příkaz "rozhlednout". Rozhlédne se po prostoru a vypíše předměty, které se v něm nachází.
      *
-     *  @param parametry - v tomto případě se nepoužívají.
+     * @param parametry - v tomto případě se nepoužívají.
      * @return seznam věcí v prostoru
      */
     @Override
@@ -33,14 +33,18 @@ public class PrikazRozhlednout extends Prikaz {
         final Prostor aktualniProstor = plan.getAktualniProstor();
         StringBuilder vystup = new StringBuilder();
 
-        vystup.append("V prostoru se nacházejí tyto věci:\n");
-
         if (aktualniProstor.getVeci().size() <= 0){
             return "V prostoru " + aktualniProstor.getNazev() + " se nic nenachází";
         }
 
+        vystup.append("V prostoru " + aktualniProstor.getNazev() + " se nacházejí tyto věci:\n");
+
         for (Vec vec : aktualniProstor.getVeci()) {
-            vystup.append("- " + vec.getNazev() + "\n");
+            if (!vec.getPrenositelnost()) {
+                vystup.append("- " + vec.getNazev() + " - nelze sebrat\n");
+            } else {
+                vystup.append("- " + vec.getNazev() + " - velikost: " + vec.getVelikost() + "\n");
+            }
         }
 
         return vystup.toString();

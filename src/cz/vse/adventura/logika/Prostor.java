@@ -200,11 +200,10 @@ public class Prostor {
      * @param vec věc k odebrání
      */
     public void odeberVec(Vec vec) {
-        if (this.obsahujeVec(vec.getNazev()) && vec.getPrenositelnost() != true) {
+        if (this.obsahujeVec(vec.getNazev()) && vec.getPrenositelnost()) {
             veci.remove(vec);
             System.out.println("Věc " + vec.getNazev() + " byl/a odebrán z prostoru " + this.getNazev() + ".");
-
-        } else if (vec.getPrenositelnost() != true) {
+        } else if (!vec.getPrenositelnost()) {
             System.out.println("Předmět " + vec.getNazev() + " je nepřenositelný.");
         } else {
             System.out.println("Předmět " + vec.getNazev() + " není v tomto prostoru.");

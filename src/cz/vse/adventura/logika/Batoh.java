@@ -46,13 +46,16 @@ public class Batoh {
      * @return true, pokud se předmět vložil, jinak false
      */
     public boolean vlozPredmet(Vec vec) {
-        if (obsazenost + vec.getVelikost() <= KAPACITA) {
+        if (obsazenost + vec.getVelikost() <= KAPACITA && vec.getPrenositelnost()) {
             obsazenost += vec.getVelikost();
             obsah.add(vec);
             System.out.println("Předmět " + vec.getNazev() + " byl vložen do batohu.");
             return true;
+        } else if (!vec.getPrenositelnost()) {
+            System.out.println("Předmět " + vec.getNazev() + " je nepřenositelný.");
+            return false;
         } else {
-            System.out.println("Batoh je plný, nelze vložit další předměty.");
+            System.out.println("Batoh je plný, předmět " + vec.getNazev() + " nešlo vložit.");
             return false;
         }
     }

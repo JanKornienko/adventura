@@ -4,8 +4,8 @@ package cz.vse.adventura.logika;
  *  Třída PrikazJdi implementuje pro hru příkaz jdi.
  *  Tato třída je součástí jednoduché textové hry.
  *
- *@autor     Jarmila Pavlickova, Luboš Pavlíček, Jan Kornienko
- *@verze     pro školní rok 2016/2017, upraveno 2024
+ *@author     Jarmila Pavlickova, Luboš Pavlíček, Jan Kornienko
+ *@version     pro školní rok 2016/2017, upraveno 2024
  */
 public class PrikazJdi extends Prikaz {
     private HerniPlan plan;

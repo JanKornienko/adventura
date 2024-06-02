@@ -24,6 +24,7 @@ public class Prostor {
     private String nazev;
     private String popis;
     private Set<Prostor> vychody;   // obsahuje sousední místnosti
+    private List<Vec> veci;
 
     /**
      * Vytvoření prostoru se zadaným popisem, např. "kuchyň", "hala", "trávník
@@ -154,6 +155,50 @@ public class Prostor {
         }
         else {
             return hledaneProstory.get(0);
+        }
+    }
+
+    /**
+     * Metoda pro přidání věci do prostoru.
+     *
+     * @param vec věc, která se má přidat do prostoru
+     */
+    public void pridejVec(Vec vec) {
+        veci.add(vec);
+    }
+
+    /**
+     * Metoda pro odebrání věci z prostoru.
+     *
+     * @param nazev název věci, která se má odebrat z prostoru
+     * @return odebraná věc, nebo null pokud věc v prostoru není
+     */
+    public Vec odeberVec(String nazev) {
+        Vec odebranaVec = null;
+        for (Vec vec : veci) {
+            if (vec.getNazev().equalsIgnoreCase(nazev)) {
+                odebranaVec = vec;
+                veci.remove(vec);
+                break;
+            }
+        }
+        return odebranaVec;
+    }
+
+    /**
+     * Metoda pro výpis všech věcí v prostoru.
+     *
+     * @return textový řetězec s výpisem všech věcí v prostoru
+     */
+    public String getVeci() {
+        if (veci.isEmpty()) {
+            return "V prostoru se nenachází žádné věci.";
+        } else {
+            StringBuilder vypis = new StringBuilder("V prostoru se nachází následující věci:\n");
+            for (Vec vec : veci) {
+                vypis.append(vec.getNazev()).append("\n");
+            }
+            return vypis.toString();
         }
     }
 

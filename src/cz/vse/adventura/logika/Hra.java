@@ -15,6 +15,7 @@ package cz.vse.adventura.logika;
 public class Hra implements IHra {
     private SeznamPrikazu platnePrikazy;    // obsahuje seznam přípustných příkazů
     private HerniPlan herniPlan;
+    private Batoh batoh;
     private boolean konecHry = false;
 
     /**
@@ -26,6 +27,11 @@ public class Hra implements IHra {
         platnePrikazy.vlozPrikaz(new PrikazNapoveda(platnePrikazy));
         platnePrikazy.vlozPrikaz(new PrikazJdi(herniPlan));
         platnePrikazy.vlozPrikaz(new PrikazKonec(this));
+        platnePrikazy.vlozPrikaz(new PrikazSeber(herniPlan.getAktualniProstor(), batoh));
+        platnePrikazy.vlozPrikaz(new PrikazPoloz(herniPlan.getAktualniProstor(), batoh));
+        platnePrikazy.vlozPrikaz(new PrikazObsah(herniPlan.getAktualniProstor(), batoh));
+        platnePrikazy.vlozPrikaz(new PrikazPouzit(batoh));
+        platnePrikazy.vlozPrikaz(new PrikazMluv(herniPlan.getAktualniProstor()));
     }
 
     /**

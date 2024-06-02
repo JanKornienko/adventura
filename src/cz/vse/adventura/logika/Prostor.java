@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 /**
@@ -16,14 +17,15 @@ import java.util.stream.Collectors;
  * Prostor může mít sousední prostory připojené přes východy. Pro každý východ
  * si prostor ukládá odkaz na sousedící prostor.
  *
- * @author Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova
- * @version pro školní rok 2016/2017
+ * @author Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova, Jan Kornienko
+ * @version pro školní rok 2016/2017, upraveno 2024
  */
 public class Prostor {
 
     private String nazev;
     private String popis;
     private Set<Prostor> vychody;   // obsahuje sousední místnosti
+    private List<Vec> veci; // seznam věcí v prostoru
 
     /**
      * Vytvoření prostoru se zadaným popisem, např. "kuchyň", "hala", "trávník
@@ -37,6 +39,7 @@ public class Prostor {
         this.nazev = nazev;
         this.popis = popis;
         vychody = new HashSet<>();
+        veci = new ArrayList<>();
     }
 
     /**
@@ -168,5 +171,65 @@ public class Prostor {
      */
     public Collection<Prostor> getVychody() {
         return Collections.unmodifiableCollection(vychody);
+    }
+
+    /**
+     * Metoda pro zjištění, zda je věc v prostoru.
+     * @param nazev název věci
+     * @return true, pokud je věc v prostoru, jinak false
+     */
+    public boolean obsahujeVec(String nazev) {
+        for (Vec vec : veci) {
+            if (vec.getNazev().equalsIgnoreCase(nazev)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Metoda pro přidání věci do prostoru.
+     * @param vec věc k přidání
+     */
+    public void vlozVec(Vec vec) {
+        veci.add(vec);
+    }
+
+    /**
+     * Metoda pro odebrání věci z prostoru.
+     * @param vec věc k odebrání
+     */
+    public void odeberVec(Vec vec) {
+        if (this.obsahujeVec(vec.getNazev()) && vec.getPrenositelnost() != true) {
+            veci.remove(vec);
+            System.out.println("Věc " + vec.getNazev() + " byl/a odebrán z prostoru " + this.getNazev() + ".");
+
+        } else if (vec.getPrenositelnost() != true) {
+            System.out.println("Předmět " + vec.getNazev() + " je nepřenositelný.");
+        } else {
+            System.out.println("Předmět " + vec.getNazev() + " není v tomto prostoru.");
+        }
+    }
+
+    /**
+     * Metoda pro získání věci z prostoru podle názvu.
+     * @param nazev název věci
+     * @return věc nalezená v prostoru, nebo null, pokud věc není v prostoru
+     */
+    public Vec getVec(String nazev) {
+        for (Vec vec : veci) {
+            if (vec.getNazev().equalsIgnoreCase(nazev)) {
+                return vec;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Metoda pro získání všech věcí v prostoru.
+     * @return seznam všech věcí v prostoru
+     */
+    public List<Vec> getVeci() {
+        return veci;
     }
 }

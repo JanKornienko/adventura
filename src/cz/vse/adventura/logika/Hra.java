@@ -16,6 +16,7 @@ public class Hra implements IHra {
     private SeznamPrikazu platnePrikazy;    // obsahuje seznam přípustných příkazů
     private HerniPlan herniPlan;
     private boolean konecHry = false;
+    private Batoh batoh;
 
     /**
      *  Vytváří hru a inicializuje místnosti (prostřednictvím třídy HerniPlan) a seznam platných příkazů.
@@ -26,6 +27,7 @@ public class Hra implements IHra {
         platnePrikazy.vlozPrikaz(new PrikazNapoveda(platnePrikazy));
         platnePrikazy.vlozPrikaz(new PrikazJdi(herniPlan));
         platnePrikazy.vlozPrikaz(new PrikazKonec(this));
+        batoh = Batoh.getInstance();
     }
 
     /**
@@ -33,8 +35,9 @@ public class Hra implements IHra {
      */
     public String vratUvitani() {
         return "Vítejte!\n" +
-                "Toto je příběh o Červené Karkulce, babičce a vlkovi.\n" +
-                "Napište 'nápověda', pokud si nevíte rady, jak hrát dál.\n" +
+                "Toto je příběh o Červené Karkulce, babičce a drakovi.\n" +
+                "Hrajete za postavu Červené karkulky, když se dostanete na hrad, vyhrajete.\n" +
+                "Napište 'napoveda', pokud si nevíte rady, jak hrát dál.\n" +
                 "\n" +
                 herniPlan.getAktualniProstor().dlouhyPopis();
     }

@@ -4,15 +4,11 @@ package cz.vse.adventura.logika;
  *  Třída PrikazNapoveda implementuje pro hru příkaz napoveda.
  *  Tato třída je součástí jednoduché textové hry.
  *
- *@author     Jarmila Pavlickova, Luboš Pavlíček
- *@version    pro školní rok 2016/2017
- *
+ *@author     Jarmila Pavlickova, Luboš Pavlíček, Jan Kornienko
+ *@version    pro školní rok 2016/2017, upraveno 2024
  */
-class PrikazNapoveda implements IPrikaz {
-
-    private static final String NAZEV = "nápověda";
+public class PrikazNapoveda extends Prikaz {
     private SeznamPrikazu platnePrikazy;
-
 
     /**
      *  Konstruktor třídy
@@ -22,6 +18,7 @@ class PrikazNapoveda implements IPrikaz {
      *                       aby je nápověda mohla zobrazit uživateli.
      */
     public PrikazNapoveda(SeznamPrikazu platnePrikazy) {
+        super("napoveda");
         this.platnePrikazy = platnePrikazy;
     }
 
@@ -34,20 +31,9 @@ class PrikazNapoveda implements IPrikaz {
     @Override
     public String provedPrikaz(String... parametry) {
         return "Tvým úkolem je dovést Červenou Karkulku z domečku\n"
-                + "až k babičce, která bydlí v chaloupce za lesem.\n"
+                + "a pokusit se dostat na hrad.\n"
                 + "\n"
                 + "Můžeš zadat tyto příkazy:\n"
                 + platnePrikazy.vratNazvyPrikazu();
     }
-
-    /**
-     *  Metoda vrací název příkazu (slovo které používá hráč pro jeho vyvolání)
-     *
-     *  @ return nazev prikazu
-     */
-    @Override
-    public String getNazev() {
-        return NAZEV;
-    }
-
 }

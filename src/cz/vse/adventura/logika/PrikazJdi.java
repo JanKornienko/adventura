@@ -4,11 +4,10 @@ package cz.vse.adventura.logika;
  *  Třída PrikazJdi implementuje pro hru příkaz jdi.
  *  Tato třída je součástí jednoduché textové hry.
  *
- *@author     Jarmila Pavlickova, Luboš Pavlíček
- *@version    pro školní rok 2016/2017
+ *@autor     Jarmila Pavlickova, Luboš Pavlíček, Jan Kornienko
+ *@verze     pro školní rok 2016/2017, upraveno 2024
  */
-class PrikazJdi implements IPrikaz {
-    private static final String NAZEV = "jdi";
+public class PrikazJdi extends Prikaz {
     private HerniPlan plan;
 
     /**
@@ -17,6 +16,7 @@ class PrikazJdi implements IPrikaz {
      *  @param plan herní plán, ve kterém se bude ve hře "chodit"
      */
     public PrikazJdi(HerniPlan plan) {
+        super("jdi");
         this.plan = plan;
     }
 
@@ -25,9 +25,9 @@ class PrikazJdi implements IPrikaz {
      *  existuje, vstoupí se do nového prostoru. Pokud zadaný sousední prostor
      *  (východ) není, vypíše se chybové hlášení.
      *
-     *@param parametry - jako  parametr obsahuje jméno prostoru (východu),
-     *                         do kterého se má jít.
-     *@return zpráva, kterou vypíše hra hráči
+     *  @param parametry - jako parametr obsahuje jméno prostoru (východu),
+     *                     do kterého se má jít.
+     *  @return zpráva, kterou vypíše hra hráči
      */
     @Override
     public String provedPrikaz(String... parametry) {
@@ -42,22 +42,10 @@ class PrikazJdi implements IPrikaz {
         Prostor sousedniProstor = plan.getAktualniProstor().vratSousedniProstor(smer);
 
         if (sousedniProstor == null) {
-            return "Tam se odsud jít nedá!";
-        }
-        else {
+            return "Tohle místo neznám";
+        } else {
             plan.setAktualniProstor(sousedniProstor);
             return sousedniProstor.dlouhyPopis();
         }
     }
-
-    /**
-     *  Metoda vrací název příkazu (slovo které používá hráč pro jeho vyvolání)
-     *
-     *  @ return nazev prikazu
-     */
-    @Override
-    public String getNazev() {
-        return NAZEV;
-    }
-
 }

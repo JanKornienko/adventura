@@ -18,17 +18,17 @@ import java.util.Map;
 class SeznamPrikazu {
     // mapa pro uložení přípustných příkazů
     private  Map<String,IPrikaz> mapaSPrikazy;
-    
-   
-    
+
+
+
     /**
      * Konstruktor
      */
     public SeznamPrikazu() {
         mapaSPrikazy = new HashMap<>();
     }
-    
-    
+
+
     /**
      * Vkládá nový příkaz.
      *
@@ -37,7 +37,7 @@ class SeznamPrikazu {
     public void vlozPrikaz(IPrikaz prikaz) {
         mapaSPrikazy.put(prikaz.getNazev(),prikaz);
     }
-    
+
     /**
      * Vrací odkaz na instanci třídy implementující rozhraní IPrikaz,
      * která provádí příkaz uvedený jako parametr.
@@ -67,7 +67,7 @@ class SeznamPrikazu {
 
     /**
      *  Vrací seznam přípustných příkazů, jednotlivé příkazy jsou odděleny mezerou.
-     *  
+     *
      *  @return     Řetězec, který obsahuje seznam přípustných příkazů
      */
     public String vratNazvyPrikazu() {
@@ -77,6 +77,6 @@ class SeznamPrikazu {
         }
         return seznam;
     }
-    
+
 }
 

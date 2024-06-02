@@ -15,8 +15,8 @@ flowchart TD
     G --> H[vesnice]
     H --> I[kovárna]
     H --> J[hospoda]
-    H --> K[hrad]
-    K --> L[korunovační_komnata]
+    H --> K[hradní_brána]
+    K --> L[hrad]
 ```
 
 ### Příběh

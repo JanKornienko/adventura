@@ -24,7 +24,6 @@ public class Prostor {
     private String nazev;
     private String popis;
     private Set<Prostor> vychody;   // obsahuje sousední místnosti
-    private List<Vec> veci;
 
     /**
      * Vytvoření prostoru se zadaným popisem, např. "kuchyň", "hala", "trávník
@@ -63,25 +62,25 @@ public class Prostor {
      *
      * @param o object, který se má porovnávat s aktuálním
      * @return hodnotu true, pokud má zadaný prostor stejný název, jinak false
-     */  
-      @Override
+     */
+    @Override
     public boolean equals(Object o) {
         // porovnáváme zda se nejedná o dva odkazy na stejnou instanci
         if (this == o) {
             return true;
         }
-        // porovnáváme jakého typu je parametr 
+        // porovnáváme jakého typu je parametr
         if (!(o instanceof Prostor)) {
             return false;    // pokud parametr není typu Prostor, vrátíme false
         }
-        // přetypujeme parametr na typ Prostor 
+        // přetypujeme parametr na typ Prostor
         Prostor druhy = (Prostor) o;
 
-        //metoda equals třídy java.util.Objects porovná hodnoty obou názvů. 
+        //metoda equals třídy java.util.Objects porovná hodnoty obou názvů.
         //Vrátí true pro stejné názvy a i v případě, že jsou oba názvy null,
         //jinak vrátí false.
 
-       return (java.util.Objects.equals(this.nazev, druhy.nazev));       
+        return (java.util.Objects.equals(this.nazev, druhy.nazev));
     }
 
     /**
@@ -98,7 +97,7 @@ public class Prostor {
         vysledek = 37 * vysledek + hashNazvu;
         return vysledek;
     }
-      
+
 
     /**
      * Vrací název prostoru (byl zadán při vytváření prostoru jako parametr
@@ -107,7 +106,7 @@ public class Prostor {
      * @return název prostoru
      */
     public String getNazev() {
-        return nazev;       
+        return nazev;
     }
 
     /**
@@ -146,59 +145,15 @@ public class Prostor {
      * null, pokud prostor zadaného jména není sousedem.
      */
     public Prostor vratSousedniProstor(String nazevSouseda) {
-        List<Prostor>hledaneProstory = 
-            vychody.stream()
-                   .filter(sousedni -> sousedni.getNazev().equals(nazevSouseda))
-                   .collect(Collectors.toList());
+        List<Prostor>hledaneProstory =
+                vychody.stream()
+                        .filter(sousedni -> sousedni.getNazev().equals(nazevSouseda))
+                        .collect(Collectors.toList());
         if(hledaneProstory.isEmpty()){
             return null;
         }
         else {
             return hledaneProstory.get(0);
-        }
-    }
-
-    /**
-     * Metoda pro přidání věci do prostoru.
-     *
-     * @param vec věc, která se má přidat do prostoru
-     */
-    public void pridejVec(Vec vec) {
-        veci.add(vec);
-    }
-
-    /**
-     * Metoda pro odebrání věci z prostoru.
-     *
-     * @param nazev název věci, která se má odebrat z prostoru
-     * @return odebraná věc, nebo null pokud věc v prostoru není
-     */
-    public Vec odeberVec(String nazev) {
-        Vec odebranaVec = null;
-        for (Vec vec : veci) {
-            if (vec.getNazev().equalsIgnoreCase(nazev)) {
-                odebranaVec = vec;
-                veci.remove(vec);
-                break;
-            }
-        }
-        return odebranaVec;
-    }
-
-    /**
-     * Metoda pro výpis všech věcí v prostoru.
-     *
-     * @return textový řetězec s výpisem všech věcí v prostoru
-     */
-    public String getVeci() {
-        if (veci.isEmpty()) {
-            return "V prostoru se nenachází žádné věci.";
-        } else {
-            StringBuilder vypis = new StringBuilder("V prostoru se nachází následující věci:\n");
-            for (Vec vec : veci) {
-                vypis.append(vec.getNazev()).append("\n");
-            }
-            return vypis.toString();
         }
     }
 

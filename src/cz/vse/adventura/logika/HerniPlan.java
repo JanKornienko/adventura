@@ -3,20 +3,20 @@ package cz.vse.adventura.logika;
 
 /**
  *  Class HerniPlan - třída představující mapu a stav adventury.
- * 
+ *
  *  Tato třída inicializuje prvky ze kterých se hra skládá:
  *  vytváří všechny prostory,
- *  propojuje je vzájemně pomocí východů 
+ *  propojuje je vzájemně pomocí východů
  *  a pamatuje si aktuální prostor, ve kterém se hráč právě nachází.
  *
  *@author     Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova
  *@version    pro školní rok 2016/2017
  */
 public class HerniPlan {
-    
+
     private Prostor aktualniProstor;
-    
-     /**
+
+    /**
      *  Konstruktor který vytváří jednotlivé prostory a propojuje je pomocí východů.
      *  Jako výchozí aktuální prostor nastaví halu.
      */
@@ -35,7 +35,7 @@ public class HerniPlan {
         Prostor jeskyne = new Prostor("jeskyně","stará plesnivá jeskyně");
         Prostor les = new Prostor("les","les s jahodami, malinami a pramenem vody");
         Prostor hlubokyLes = new Prostor("hluboký_les","temný les, ve kterém lze potkat vlka");
-        
+
         // přiřazují se průchody mezi prostory (sousedící prostory)
         domecek.setVychod(les);
         les.setVychod(domecek);
@@ -45,27 +45,27 @@ public class HerniPlan {
         hlubokyLes.setVychod(chaloupka);
         jeskyne.setVychod(hlubokyLes);
         chaloupka.setVychod(hlubokyLes);
-                
-        aktualniProstor = domecek;  // hra začíná v domečku       
+
+        aktualniProstor = domecek;  // hra začíná v domečku
     }
-    
+
     /**
      *  Metoda vrací odkaz na aktuální prostor, ve ktetém se hráč právě nachází.
      *
      *@return     aktuální prostor
      */
-    
+
     public Prostor getAktualniProstor() {
         return aktualniProstor;
     }
-    
+
     /**
      *  Metoda nastaví aktuální prostor, používá se nejčastěji při přechodu mezi prostory
      *
      *@param  prostor nový aktuální prostor
      */
     public void setAktualniProstor(Prostor prostor) {
-       aktualniProstor = prostor;
+        aktualniProstor = prostor;
     }
 
 }

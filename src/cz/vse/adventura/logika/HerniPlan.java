@@ -96,7 +96,7 @@ public class HerniPlan {
         vesnice.vlozVec(kybl);
         kovarna.vlozVec(kovadlina);
         hospoda.vlozVec(pivo);
-        
+
         aktualniProstor = domecek;  // hra začíná v domečku
     }
 

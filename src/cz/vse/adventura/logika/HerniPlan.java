@@ -12,19 +12,20 @@ import javax.swing.*;
  *  a pamatuje si aktuální prostor, ve kterém se hráč právě nachází.
  *
  *@author     Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova, Jan Kornienko
- *@version    pro školní rok 2016/2017, upraveno 2024
+ *@version    pro školní rok 2016/2017, upraveno LS 2024
  */
 public class HerniPlan {
-
+    private Hra hra;
     private Prostor aktualniProstor;
+    private Prostor vyherniProstor;
 
     /**
      *  Konstruktor který vytváří jednotlivé prostory a propojuje je pomocí východů.
      *  Jako výchozí aktuální prostor nastaví halu.
      */
-    public HerniPlan() {
+    public HerniPlan(Hra hra) {
+        this.hra = hra;
         zalozProstoryHry();
-
     }
     /**
      *  Vytváří jednotlivé prostory a propojuje je pomocí východů.
@@ -70,6 +71,7 @@ public class HerniPlan {
         hrad.setZamceno(true); // zamkne hrad
 
         aktualniProstor = domecek;  // hra začíná v domečku
+        vyherniProstor = hrad; // urcuje konec hry - vyhra
 
         // vytvoření věcí na plánku
         Vec klacek = new Vec("klacek", 3, true);
@@ -121,7 +123,6 @@ public class HerniPlan {
      *
      *@return     aktuální prostor
      */
-
     public Prostor getAktualniProstor() {
         return aktualniProstor;
     }
@@ -133,6 +134,7 @@ public class HerniPlan {
      */
     public void setAktualniProstor(Prostor prostor) {
         aktualniProstor = prostor;
+        hra.kontrolaVyhry(aktualniProstor, vyherniProstor);
     }
 
 }

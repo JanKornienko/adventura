@@ -57,5 +57,4 @@ public class TextoveRozhrani {
         System.out.print("> ");
         return scanner.nextLine();
     }
-
 }

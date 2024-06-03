@@ -5,8 +5,8 @@ package cz.vse.adventura.logika;
  * Tato třída je součástí jednoduché textové hry.
  * Příklad dědičnosti podle požadavků domácího úkolu
  *
- * @author     Jan Kornienko
- * @version    pro školní rok 2023/2024
+ *  @author Jan Kornienko
+ *  @version pro LS 2023/2024
  */
 public abstract class Postava {
     private final String jmeno;
@@ -80,6 +80,11 @@ public abstract class Postava {
         return batoh;
     }
 
+    /**
+     * Kontroluje, zda batoh obsahuje požadovanou věc, a pokud ano, odebere ji z batohu.
+     *
+     * @return true, pokud požadovaná věc existuje v batohu a byla odebrána, jinak false
+     */
     public boolean existujiciVec() {
         if (batoh.obsahujePredmet(pozadovanaVec.getNazev())) {
             Vec existujiciVec = batoh.getPredmet(pozadovanaVec.getNazev());

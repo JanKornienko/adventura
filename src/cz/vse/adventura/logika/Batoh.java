@@ -9,8 +9,8 @@ import java.util.List;
  *
  * Implementace singletonu, požadováno v domácím úkolu.
  *
- * @author     Jan Kornienko
- * @version    pro školní rok 2023/2024
+ *  @author Jan Kornienko
+ *  @version pro LS 2023/2024
  */
 public class Batoh {
     private static final int KAPACITA = 5; // Maximální kapacita batohu

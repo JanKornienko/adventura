@@ -5,7 +5,7 @@ package cz.vse.adventura.logika;
  *  Tato třída je součástí jednoduché textové hry.
  *
  *@autor     Jarmila Pavlickova, Luboš Pavlíček, Jan Kornienko
- *@verze     pro školní rok 2016/2017, upraveno 2024
+ *@verze     pro školní rok 2016/2017, upraveno LS 2024
  */
 public class PrikazKonec extends Prikaz {
     private Hra hra;

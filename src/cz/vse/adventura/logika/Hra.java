@@ -22,7 +22,7 @@ public class Hra implements IHra {
      *  Vytváří hru a inicializuje místnosti (prostřednictvím třídy HerniPlan) a seznam platných příkazů.
      */
     public Hra() {
-        herniPlan = new HerniPlan();
+        herniPlan = new HerniPlan(this);
         platnePrikazy = new SeznamPrikazu();
         platnePrikazy.vlozPrikaz(new PrikazNapoveda(platnePrikazy));
         platnePrikazy.vlozPrikaz(new PrikazJdi(herniPlan));
@@ -52,7 +52,25 @@ public class Hra implements IHra {
      *  Vrátí závěrečnou zprávu pro hráče.
      */
     public String vratEpilog() {
-        return "Dík, že jste si zahráli.  Ahoj.";
+        return "Dík, že jste si zahráli.";
+    }
+
+    /**
+     * Kontroluje, zda hráč dosáhl vítězného prostoru, a pokud ano, ukončí hru.
+     *
+     * @param aktualniProstor aktuální prostor, kde se hráč nachází
+     * @param vyherniProstor prostor, který je považován za vítězný
+     */
+    public void kontrolaVyhry(Prostor aktualniProstor, Prostor vyherniProstor) {
+        if (aktualniProstor.equals(vyherniProstor)) {
+            System.out.println("Dostal jsi se na " + vyherniProstor.getNazev());
+            System.out.println("=========");
+            System.out.println("GRATULUJI");
+            System.out.println("VYHRÁL SI");
+            System.out.println("=========");
+            setKonecHry(true);
+            System.exit(0);
+        }
     }
 
     /**

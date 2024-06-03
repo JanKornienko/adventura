@@ -6,7 +6,7 @@ package cz.vse.adventura.logika;
  *  Příklad dědičnosti podle požadavků domácího úkolu
  *
  * @author     Jan Kornienko
- * @version    pro školní rok 2023/2024
+ * @version    pro LS 2023/2024
  */
 public abstract class Prikaz implements IPrikaz {
     private final String nazev;

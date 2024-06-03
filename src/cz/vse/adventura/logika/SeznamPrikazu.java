@@ -19,8 +19,6 @@ class SeznamPrikazu {
     // mapa pro uložení přípustných příkazů
     private  Map<String,IPrikaz> mapaSPrikazy;
 
-
-
     /**
      * Konstruktor
      */

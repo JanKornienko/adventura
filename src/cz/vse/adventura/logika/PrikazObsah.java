@@ -7,7 +7,7 @@ import java.lang.StringBuilder;
  *  Tato třída je součástí jednoduché textové hry.
  *
  * @author     Jan Kornienko
- * @version    pro školní rok 2023/2024
+ * @version    pro LS 2023/2024
  */
 public class PrikazObsah extends Prikaz {
     private Batoh batoh;

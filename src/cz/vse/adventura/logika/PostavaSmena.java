@@ -4,16 +4,37 @@ import java.time.LocalDate;
 import java.time.DayOfWeek;
 import java.lang.StringBuilder;
 
+/**
+ * Třída reprezentující postavu Směny v herním světě.
+ * Je potomkem třídy Postava.
+ *
+ * @author Jan Kornienko
+ * @version pro LS 2023/2024
+ */
 public class PostavaSmena extends Postava {
     private int pozadovanyPocet;
     private Vec darovanaVec;
 
+    /**
+     * Konstruktor pro vytvoření instance postavy Směny.
+     *
+     * @param jmeno název postavy Směny
+     * @param prostor aktuální prostor, kde se postava nachází
+     * @param pozadovanaVec požadovaná věc k interakci s postavou
+     * @param darovanaVec věc, kterou postava daruje hráči
+     * @param pozadovanyPocet požadovaný počet věcí k výměně
+     */
     public PostavaSmena(String jmeno, Prostor prostor, Vec pozadovanaVec, Vec darovanaVec, int pozadovanyPocet) {
         super(jmeno, prostor, pozadovanaVec);
         this.darovanaVec = darovanaVec;
         this.pozadovanyPocet = pozadovanyPocet;
     }
 
+    /**
+     * Metoda pro vytvoření pozdravu postavy Směny v závislosti na aktuálním dni.
+     *
+     * @return pozdrav postavy Směny
+     */
     private String pozdrav() {
         StringBuilder vystup = new StringBuilder();
 
@@ -62,6 +83,9 @@ public class PostavaSmena extends Postava {
         return vystup.toString();
     }
 
+    /**
+     * Metoda pro přidání darované věci do batohu hráče.
+     */
     private void pridaniDoBatohu() {
         if (!getBatoh().vlozPredmet(darovanaVec)) {
             System.out.println("Vypadá to, že máš plný baťůžek, proto ti nachám " + darovanaVec.getNazev() + " tady v " + getProstor().getNazev());
@@ -71,6 +95,9 @@ public class PostavaSmena extends Postava {
         setSmenaProbehla();
     }
 
+    /**
+     * Metoda pro provedení akce interakce s postavou Směny.
+     */
     public void akce() {
         if (getSmenaProbehla()) {
             System.out.println("Už ti nemám co nabídnout, pokud sis ode mě nevzala " + darovanaVec.getNazev() + ", najdeš to v prostoru " + getProstor().getNazev());

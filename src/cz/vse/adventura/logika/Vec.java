@@ -5,7 +5,7 @@ package cz.vse.adventura.logika;
  * Každý předmět má název, popis a velikost.
  *
  * @author     Jan Kornienko
- * @version    pro školní rok 2023/2024
+ * @version    pro LS 2023/2024
  */
 public class Vec {
     private String nazev; // Název předmětu

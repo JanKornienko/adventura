@@ -72,12 +72,12 @@ public class PostavaSmena extends Postava {
                 break;
         }
 
-        vystup.append("já jsem " + getJmeno() + " ");
+        vystup.append("já jsem " + getJmeno());
 
         if (pozadovanyPocet <= 0 && darovanaVec != null) {
             vystup.append(", tady máš " + darovanaVec.getNazev() + ", může se ti někdy v budoucnu hodit.");
         } else {
-            vystup.append("a dám ti " + darovanaVec.getNazev() + " za " + pozadovanyPocet + " " + getPozadovanaVec().getNazev() + ".");
+            vystup.append(" a dám ti " + darovanaVec.getNazev() + " za " + pozadovanyPocet + " " + getPozadovanaVec().getNazev() + ".");
         }
 
         return vystup.toString();

@@ -13,6 +13,7 @@ public abstract class Postava {
     private final Vec pozadovanaVec;
     private final Prostor prostor;
     private boolean smenaProbehla;
+    private Batoh batoh;
 
     /**
      * Konstruktor pro vytvoření postavy
@@ -20,6 +21,7 @@ public abstract class Postava {
      * @param jmeno jméno postavy
      */
     public Postava(String jmeno, Prostor prostor, Vec pozadovanaVec) {
+        this.batoh = Batoh.getInstance();
         this.jmeno = jmeno;
         this.prostor = prostor;
         this.pozadovanaVec = pozadovanaVec;
@@ -67,6 +69,25 @@ public abstract class Postava {
      */
     public void setSmenaProbehla() {
         smenaProbehla = true;
+    }
+
+    /**
+     * Metoda která získá objekt batohu
+     *
+     * @return batoh
+     */
+    public Batoh getBatoh() {
+        return batoh;
+    }
+
+    public boolean existujiciVec() {
+        if (batoh.obsahujePredmet(pozadovanaVec.getNazev())) {
+            Vec existujiciVec = batoh.getPredmet(pozadovanaVec.getNazev());
+            batoh.odeberPredmet(existujiciVec);
+            return true;
+        }
+
+        return false;
     }
 
     /**

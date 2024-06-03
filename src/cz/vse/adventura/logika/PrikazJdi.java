@@ -43,6 +43,8 @@ public class PrikazJdi extends Prikaz {
 
         if (sousedniProstor == null) {
             return "Tohle místo neznám";
+        } else if (sousedniProstor.getZamceno()) {
+            return sousedniProstor.getNazev() + " je zamčený, nemůžeš projít dále.";
         } else {
             plan.setAktualniProstor(sousedniProstor);
             return sousedniProstor.dlouhyPopis();

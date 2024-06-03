@@ -34,10 +34,9 @@ public class HerniPlan {
         // vytvářejí se jednotlivé prostory
         Prostor domecek = new Prostor("domecek","domeček, ve kterém bydlí Karkulka");
         Prostor chaloupka = new Prostor("chaloupka","chaloupka, ve které bydlí babička Karkulky");
-        Prostor jeskyne = new Prostor("jeskyne","stará a tmavá jeskyně");
         Prostor les = new Prostor("les","les, který je plný dřeva a borůvek");
         Prostor hlubokyLes = new Prostor("hluboky_les","hluboký les, ve kterém má babička chaloupku");
-        Prostor draciDoupe = new Prostor("draci_doupe","dračí doupě, ve kterém číhá nebezpečný drak");
+        Prostor draciDoupe = new Prostor("draci_doupe","dračí doupě, ve které číhá nebezpečný drak");
         Prostor cesta = new Prostor("cesta","cesta, na které tě může čekat nečekané překvapení");
         Prostor vesnice = new Prostor("vesnice","vesnice, ve které se nachází spoustu zajímavých míst");
         Prostor kovarna = new Prostor("kovarna","kovárna, kde pracuje kovář");
@@ -52,12 +51,10 @@ public class HerniPlan {
         les.setVychod(hlubokyLes);
         les.setVychod(cesta);
         hlubokyLes.setVychod(les);
-        hlubokyLes.setVychod(jeskyne);
+        hlubokyLes.setVychod(draciDoupe);
         hlubokyLes.setVychod(chaloupka);
-        jeskyne.setVychod(hlubokyLes);
-        jeskyne.setVychod(draciDoupe);
+        draciDoupe.setVychod(hlubokyLes);
         chaloupka.setVychod(hlubokyLes);
-        draciDoupe.setVychod(jeskyne);
         cesta.setVychod(les);
         cesta.setVychod(vesnice);
         vesnice.setVychod(cesta);
@@ -69,6 +66,8 @@ public class HerniPlan {
         hradni_brana.setVychod(vesnice);
         hradni_brana.setVychod(hrad);
         hrad.setVychod(hradni_brana);
+
+        hrad.setZamceno(true); // zamkne hrad
 
         aktualniProstor = domecek;  // hra začíná v domečku
 
@@ -94,23 +93,27 @@ public class HerniPlan {
         hlubokyLes.vlozVec(parez);
         hlubokyLes.vlozVec(strom);
         hlubokyLes.vlozVec(odpadleParozi);
-        chaloupka.vlozVec(zlatak);
-        jeskyne.vlozVec(balvan);
+        chaloupka.vlozVec(lucerna);
+        draciDoupe.vlozVec(balvan);
         vesnice.vlozVec(kybl);
         kovarna.vlozVec(kovadlina);
         hospoda.vlozVec(pivo);
 
         // vytvoreni postav na planku
-        Postava babicka = new PostavaSmena("babicka", chaloupka, null, lucerna, 0);
+        Postava babicka = new PostavaSmena("babicka", chaloupka, null, zlatak, 0);
         Postava obchodnik = new PostavaSmena("obchodnik", cesta, boruvky, zlatak, 1);
         Postava hospodsky = new PostavaSmena("hospodsky", hospoda, odpadleParozi, zlatak, 1);
         Postava kovar = new PostavaSmena("kovar", kovarna, zlatak, mec, 3);
+        Postava straz = new PostavaStraz("straz", hrad, draciHlava);
+        Postava drak = new PostavaDrak("drak", draciDoupe, mec, draciHlava);
 
         // zasazeni postav do prostoru
         chaloupka.vlozPostavu(babicka);
         cesta.vlozPostavu(obchodnik);
         hospoda.vlozPostavu(hospodsky);
         kovarna.vlozPostavu(kovar);
+        hradni_brana.vlozPostavu(straz);
+        draciDoupe.vlozPostavu(drak);
     }
 
     /**

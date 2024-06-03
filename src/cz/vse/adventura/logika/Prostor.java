@@ -27,6 +27,7 @@ public class Prostor {
     private Set<Prostor> vychody;   // obsahuje sousední místnosti
     private List<Vec> veci; // seznam věcí v prostoru
     private List<Postava> postavy; // seznam postav v prostoru
+    private boolean zamceno;
 
     /**
      * Vytvoření prostoru se zadaným popisem, např. "kuchyň", "hala", "trávník
@@ -39,6 +40,7 @@ public class Prostor {
     public Prostor(String nazev, String popis) {
         this.nazev = nazev;
         this.popis = popis;
+        zamceno = false;
         vychody = new HashSet<>();
         veci = new ArrayList<>();
         postavy = new ArrayList<>();
@@ -292,5 +294,23 @@ public class Prostor {
      */
     public List<Postava> getPostavy() {
         return postavy;
+    }
+
+    /**
+     * Nastaví stav zámku.
+     *
+     * @param zamceno nový stav zámku, kde {@code true} znamená zamčeno a {@code false} znamená odemčeno
+     */
+    public void setZamceno(boolean zamceno) {
+        this.zamceno = zamceno;
+    }
+
+    /**
+     * Vrátí aktuální stav zámku.
+     *
+     * @return {@code true} pokud je zamčeno, {@code false} pokud je odemčeno
+     */
+    public boolean getZamceno() {
+        return zamceno;
     }
 }

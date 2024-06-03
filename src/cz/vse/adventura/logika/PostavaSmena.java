@@ -4,16 +4,14 @@ import java.time.LocalDate;
 import java.time.DayOfWeek;
 import java.lang.StringBuilder;
 
-public class PostavaSmena extends Postava{
+public class PostavaSmena extends Postava {
     private int pozadovanyPocet;
-    private Batoh batoh;
     private Vec darovanaVec;
 
     public PostavaSmena(String jmeno, Prostor prostor, Vec pozadovanaVec, Vec darovanaVec, int pozadovanyPocet) {
         super(jmeno, prostor, pozadovanaVec);
         this.darovanaVec = darovanaVec;
         this.pozadovanyPocet = pozadovanyPocet;
-        this.batoh = Batoh.getInstance();
     }
 
     private String pozdrav() {
@@ -65,7 +63,7 @@ public class PostavaSmena extends Postava{
     }
 
     private void pridaniDoBatohu() {
-        if (!batoh.vlozPredmet(darovanaVec)) {
+        if (!getBatoh().vlozPredmet(darovanaVec)) {
             System.out.println("Vypadá to, že máš plný baťůžek, proto ti nachám " + darovanaVec.getNazev() + " tady v " + getProstor().getNazev());
             getProstor().vlozVec(darovanaVec);
         }
@@ -89,9 +87,7 @@ public class PostavaSmena extends Postava{
 
         // Kontrola poctu pozadovanych veci
         while (pozadovanyPocet > 0) {
-            if (batoh.obsahujePredmet(getPozadovanaVec().getNazev())) {
-                Vec existujiciVec = batoh.getPredmet(getPozadovanaVec().getNazev());
-                batoh.odeberPredmet(existujiciVec);
+            if (existujiciVec()) {
                 pozadovanyPocet--;
                 continue;
             }

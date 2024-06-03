@@ -11,7 +11,6 @@ package cz.vse.adventura.logika;
 public abstract class Postava {
     private final String jmeno;
     private final Vec pozadovanaVec;
-    private final Vec darovanaVec;
     private final Prostor prostor;
     private boolean smenaProbehla;
 
@@ -20,11 +19,10 @@ public abstract class Postava {
      *
      * @param jmeno jméno postavy
      */
-    public Postava(String jmeno, Prostor prostor, Vec pozadovanaVec, Vec darovanaVec) {
+    public Postava(String jmeno, Prostor prostor, Vec pozadovanaVec) {
         this.jmeno = jmeno;
         this.prostor = prostor;
         this.pozadovanaVec = pozadovanaVec;
-        this.darovanaVec = darovanaVec;
         this.smenaProbehla = false;
     }
 
@@ -47,15 +45,6 @@ public abstract class Postava {
     }
 
     /**
-     * Metoda vrací věc, kterou výměnou daruje
-     *
-     * @return věc, kterou výměnou daruje
-     */
-    public Vec getDarovanaVec() {
-        return darovanaVec;
-    }
-
-    /**
      * Metoda vrací prostor, ve kterém se postava nachází
      *
      * @return prostor, ve kterém postava je
@@ -64,11 +53,24 @@ public abstract class Postava {
         return prostor;
     }
 
+    /**
+     * Metoda vrací zda směna proběhla
+     *
+     * @return boolean proběhlé směny
+     */
     public boolean getSmenaProbehla() {
         return smenaProbehla;
     }
 
+    /**
+     * Metoda nastavuje proběhlou směnu
+     */
     public void setSmenaProbehla() {
         smenaProbehla = true;
     }
+
+    /**
+     * Metoda, ve které se provádí akce postavy
+     */
+    public abstract void akce();
 }

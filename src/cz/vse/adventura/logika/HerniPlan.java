@@ -70,6 +70,8 @@ public class HerniPlan {
         hradni_brana.setVychod(hrad);
         hrad.setVychod(hradni_brana);
 
+        aktualniProstor = domecek;  // hra začíná v domečku
+
         // vytvoření věcí na plánku
         Vec klacek = new Vec("klacek", 3, true);
         Vec boruvky = new Vec("boruvky", 2, true);
@@ -89,16 +91,26 @@ public class HerniPlan {
         les.vlozVec(klacek);
         les.vlozVec(boruvky);
         les.vlozVec(strom);
-        les.vlozVec(boruvky);
         hlubokyLes.vlozVec(parez);
         hlubokyLes.vlozVec(strom);
         hlubokyLes.vlozVec(odpadleParozi);
+        chaloupka.vlozVec(zlatak);
         jeskyne.vlozVec(balvan);
         vesnice.vlozVec(kybl);
         kovarna.vlozVec(kovadlina);
         hospoda.vlozVec(pivo);
 
-        aktualniProstor = domecek;  // hra začíná v domečku
+        // vytvoreni postav na planku
+        Postava babicka = new PostavaSmena("babicka", chaloupka, null, lucerna, 0);
+        Postava obchodnik = new PostavaSmena("obchodnik", cesta, boruvky, zlatak, 1);
+        Postava hospodsky = new PostavaSmena("hospodsky", hospoda, odpadleParozi, zlatak, 1);
+        Postava kovar = new PostavaSmena("kovar", kovarna, zlatak, mec, 3);
+
+        // zasazeni postav do prostoru
+        chaloupka.vlozPostavu(babicka);
+        cesta.vlozPostavu(obchodnik);
+        hospoda.vlozPostavu(hospodsky);
+        kovarna.vlozPostavu(kovar);
     }
 
     /**

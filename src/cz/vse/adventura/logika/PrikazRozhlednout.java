@@ -33,17 +33,27 @@ public class PrikazRozhlednout extends Prikaz {
         final Prostor aktualniProstor = plan.getAktualniProstor();
         StringBuilder vystup = new StringBuilder();
 
-        if (aktualniProstor.getVeci().size() <= 0){
-            return "V prostoru " + aktualniProstor.getNazev() + " se nic nenachází";
+        if (aktualniProstor.getPostavy().size() <= 0) {
+            vystup.append("V prostoru " + aktualniProstor.getNazev() + " se nenachází žádné postavy.\n");
+        } else {
+            vystup.append("V prostoru " + aktualniProstor.getNazev() + " se nacházejí tyto postavy:\n");
+
+            for (Postava postava : aktualniProstor.getPostavy()) {
+                vystup.append("- " + postava.getJmeno() + "\n");
+            }
         }
 
-        vystup.append("V prostoru " + aktualniProstor.getNazev() + " se nacházejí tyto věci:\n");
+        if (aktualniProstor.getVeci().size() <= 0){
+            vystup.append("V prostoru " + aktualniProstor.getNazev() + " se nenachází žádné věci.");
+        } else {
+            vystup.append("V prostoru " + aktualniProstor.getNazev() + " se nacházejí tyto věci:\n");
 
-        for (Vec vec : aktualniProstor.getVeci()) {
-            if (!vec.getPrenositelnost()) {
-                vystup.append("- " + vec.getNazev() + " - nelze sebrat\n");
-            } else {
-                vystup.append("- " + vec.getNazev() + " - velikost: " + vec.getVelikost() + "\n");
+            for (Vec vec : aktualniProstor.getVeci()) {
+                if (!vec.getPrenositelnost()) {
+                    vystup.append("- " + vec.getNazev() + " - nelze sebrat\n");
+                } else {
+                    vystup.append("- " + vec.getNazev() + " - velikost: " + vec.getVelikost() + "\n");
+                }
             }
         }
 

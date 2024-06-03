@@ -26,6 +26,7 @@ public class Prostor {
     private String popis;
     private Set<Prostor> vychody;   // obsahuje sousední místnosti
     private List<Vec> veci; // seznam věcí v prostoru
+    private List<Postava> postavy; // seznam postav v prostoru
 
     /**
      * Vytvoření prostoru se zadaným popisem, např. "kuchyň", "hala", "trávník
@@ -40,6 +41,7 @@ public class Prostor {
         this.popis = popis;
         vychody = new HashSet<>();
         veci = new ArrayList<>();
+        postavy = new ArrayList<>();
     }
 
     /**
@@ -230,5 +232,65 @@ public class Prostor {
      */
     public List<Vec> getVeci() {
         return veci;
+    }
+
+    /**
+     * Kontroluje, zda postava se zadaným jménem existuje v seznamu.
+     *
+     * @param jmeno jméno postavy, kterou hledáte
+     * @return true, pokud postava se zadaným jménem existuje, jinak false
+     */
+    public boolean obsahujePostavu(String jmeno) {
+        for (Postava postava : postavy) {
+            if (postava.getJmeno().equalsIgnoreCase(jmeno)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Přidá postavu do seznamu.
+     *
+     * @param postava postava, která má být přidána
+     */
+    public void vlozPostavu(Postava postava) {
+        postavy.add(postava);
+    }
+
+    /**
+     * Metoda pro odebrání postav z prostoru.
+     * @param postava postava k odebrání
+     */
+    public void odeberPostavu(Postava postava) {
+        if (this.obsahujePostavu(postava.getJmeno())) {
+            postavy.remove(postava);
+        } else {
+            System.out.println("Postava " + postava.getJmeno() + " není v tomto prostoru.");
+        }
+    }
+
+    /**
+     * Získá postavu se zadaným jménem ze seznamu.
+     *
+     * @param jmeno jméno postavy, kterou chcete získat
+     * @return postava se zadaným jménem nebo null, pokud nebyla nalezena
+     */
+    public Postava getPostava(String jmeno) {
+        for (Postava postava : postavy) {
+            if (postava.getJmeno().equalsIgnoreCase(jmeno)) {
+                return postava;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Vrátí seznam všech postav.
+     *
+     * @return seznam všech postav
+     */
+    public List<Postava> getPostavy() {
+        return postavy;
     }
 }

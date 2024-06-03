@@ -32,6 +32,7 @@ public class Hra implements IHra {
         platnePrikazy.vlozPrikaz(new PrikazPolozit(herniPlan));
         platnePrikazy.vlozPrikaz(new PrikazObsah());
         platnePrikazy.vlozPrikaz(new PrikazMisto(herniPlan));
+        platnePrikazy.vlozPrikaz(new PrikazInterakce(herniPlan));
         batoh = Batoh.getInstance();
     }
 

@@ -12,7 +12,7 @@ flowchart TD
     B --> C[hluboky_les]
     B --> G[cesta]
     C --> D[chaloupka]
-    C --> E[drací_doupě]
+    C --> E[draci_doupe]
     G --> H[vesnice]
     H --> I[kovarna]
     H --> J[hospoda]

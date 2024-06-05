@@ -8,17 +8,26 @@ Adventura je jednoduchá textová hra, která probíhá v kouzelném prostředí
 
 ```mermaid
 flowchart TD
-    A[domeček] --> B[les]
-    B --> C[hluboký_les]
+    A[domecek] --> B[les]
+    B --> C[hluboky_les]
     B --> G[cesta]
     C --> D[chaloupka]
-    C --> E[dračí_doupě]
+    C --> E[drací_doupě]
     G --> H[vesnice]
-    H --> I[kovárna]
+    H --> I[kovarna]
     H --> J[hospoda]
-    H --> K[hradní_brána]
+    H --> K[hradni_brana]
     K --> L[hrad]
 ```
+
+## Postavy
+
+- **Drak**: V prostoru **draci_doupe**, hráč musí mít **meč**, po poražení se do prostoru vloží **dračí hlava**, drak z prostoru zmizne.
+- **Stráž**: V prostoru **hradni_brana**, hráč musí mít **dračí hlavu** a následné odemčení hradu.
+- **Babička**: V prostoru **chaloupka**, dá hráči **zlaťák**.
+- **Obchodník**: V prostoru **cesta**, dá hráči **zlaťák** výměnou za **borůvky**.
+- **Hospodský**: V prostoru **hospoda**, dá hráči **zlaťák** výměnou za **odpadlé paroží**.
+- **Kovář**: v prostoru **kovarna**, dá hráči **meč** výměnou za **3 zlaťáky**.
 
 ## Příkazy
 

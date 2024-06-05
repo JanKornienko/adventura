@@ -2,30 +2,37 @@ package cz.vse.adventura.logika;
 
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 /*******************************************************************************
  * Testovací třída ProstorTest slouží ke komplexnímu otestování
  * třídy Prostor
  *
- * @author    Jarmila Pavlíčková
- * @version   pro skolní rok 2016/2017
+ * @author    Jarmila Pavlíčková, Jan Kornienko
+ * @version   pro skolní rok 2016/2017, upraveno 2024
  */
 public class ProstorTest
 {
-    //== Datové atributy (statické i instancí)======================================
-
-    //== Konstruktory a tovární metody =============================================
-    //-- Testovací třída vystačí s prázdným implicitním konstruktorem ----------
-
-    //== Příprava a úklid přípravku ================================================
-
-    //== Soukromé metody používané v testovacích metodách ==========================
-
-    //== Vlastní testovací metody ==================================================
+    private Prostor hrad;
+    private Vec mec;
+    private Vec jablko;
+    private Postava drak;
 
     /**
+     * Inicializace prostředků pro každý test.
+     */
+    @BeforeEach
+    public void setUp() {
+        hrad = new Prostor("hrad", "popis hradu");
+        mec = new Vec("Mec", 1, true);
+        jablko = new Vec("Jablko", 1, true);
+        drak = new PostavaDrak("Drak", hrad, mec, jablko);
+    }
+
+    /**
+     * Původní 2016/2017
      * Testuje, zda jsou správně nastaveny průchody mezi prostory hry. Prostory
      * nemusí odpovídat vlastní hře, 
      */
@@ -39,4 +46,43 @@ public class ProstorTest
         assertEquals(null, prostor2.vratSousedniProstor("pokoj"));
     }
 
+    /**
+     * Test přidávání a odebírání věcí v prostoru.
+     */
+    @Test
+    public void testVeciVProstoru() {
+        hrad.vlozVec(mec);
+        assertTrue(hrad.obsahujeVec("Mec"));
+        assertEquals(mec, hrad.getVec("Mec"));
+
+        hrad.odeberVec(mec);
+        assertFalse(hrad.obsahujeVec("Mec"));
+        assertNull(hrad.getVec("Mec"));
+    }
+
+    /**
+     * Test přidávání a odebírání postav v prostoru.
+     */
+    @Test
+    public void testPostavyVProstoru() {
+        hrad.vlozPostavu(drak);
+        assertTrue(hrad.obsahujePostavu("Drak"));
+        assertEquals(drak, hrad.getPostava("Drak"));
+
+        hrad.odeberPostavu(drak);
+        assertFalse(hrad.obsahujePostavu("Drak"));
+        assertNull(hrad.getPostava("Drak"));
+    }
+
+    /**
+     * Test zamčení a odemčení prostoru.
+     */
+    @Test
+    public void testZamceniProstoru() {
+        hrad.setZamceno(true);
+        assertTrue(hrad.getZamceno());
+
+        hrad.setZamceno(false);
+        assertFalse(hrad.getZamceno());
+    }
 }

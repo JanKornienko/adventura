@@ -63,7 +63,7 @@ public class Hra implements IHra {
      */
     public void kontrolaVyhry(Prostor aktualniProstor, Prostor vyherniProstor) {
         if (aktualniProstor.equals(vyherniProstor)) {
-            System.out.println("Dostal jsi se na " + vyherniProstor.getNazev());
+            System.out.println("Dostal si se na " + vyherniProstor.getNazev());
             System.out.println("=========");
             System.out.println("GRATULUJI");
             System.out.println("VYHRÁL SI");

@@ -114,6 +114,15 @@ public class Batoh {
     }
 
     /**
+     * Metoda pro vyčištění batohu,
+     * používaná v testech
+     */
+    public void vycistitBatoh() {
+        obsah.clear();
+        obsazenost = 0;
+    }
+
+    /**
      * Metoda pro získání počtu předmětů v batohu.
      * @return počet předmětů v batohu
      */
